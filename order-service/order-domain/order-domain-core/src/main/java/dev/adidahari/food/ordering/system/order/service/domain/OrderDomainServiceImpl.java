@@ -42,7 +42,7 @@ public class OrderDomainServiceImpl implements OrderDomainService{
 
     @Override
     public void approveOrder(Order order) {
-         order.approve();
+        order.approve();
 
         log.info("Order with id: {} is approved", order.getId().getValue());
     }
@@ -71,13 +71,23 @@ public class OrderDomainServiceImpl implements OrderDomainService{
     }
 
     private void setOrderProductInformation(Order order, Restaurant restaurant) {
-        order.getItems().forEach(orderItem -> restaurant.getProducts().forEach(restaurantProduct -> {
-            Product currentProduct = orderItem.getProduct();
-            if (currentProduct.equals(restaurantProduct)) {
-                currentProduct.updateWithConfirmedNameAndPrice(restaurantProduct.getName(),
-                        restaurantProduct.getPrice());
-            }
-        }));
+        order.getItems().forEach(orderItem -> {
+                    Product currentProduct = orderItem.getProduct();
+
+                    Product restaurantProduct = restaurant.getProductById(orderItem.getProduct().getId().getValue());
+
+                    if (restaurantProduct != null) {
+                        currentProduct.updateWithConfirmedNameAndPrice(restaurantProduct.getName(), restaurantProduct.getPrice());
+                    }
+                }
+//                restaurant.getProducts().forEach(restaurantProduct -> {
+//            Product currentProduct = orderItem.getProduct();
+//            if (currentProduct.equals(restaurantProduct)) {
+//                currentProduct.updateWithConfirmedNameAndPrice(restaurantProduct.getName(),
+//                        restaurantProduct.getPrice());
+//            }
+//        })
+        );
     }
 
 }

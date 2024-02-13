@@ -3,11 +3,18 @@ package dev.adidahari.food.ordering.system.order.service.domain.entity;
 import dev.adidahari.food.ordering.system.domain.entity.AggregateRoot;
 import dev.adidahari.food.ordering.system.domain.valueobject.RestaurantId;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class Restaurant extends AggregateRoot<RestaurantId> {
-    private final List<Product> products;
+    private final HashMap<UUID, Product> products;
     private boolean active;
+
+
+    public Product getProductById(UUID id) {
+        return products.get(id);
+    }
 
     private Restaurant(Builder builder) {
         super.setId(builder.restaurantId);
@@ -19,7 +26,7 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
         return new Builder();
     }
 
-    public List<Product> getProducts() {
+    public HashMap<UUID, Product> getProducts() {
         return products;
     }
 
@@ -29,7 +36,7 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
 
     public static final class Builder {
         private RestaurantId restaurantId;
-        private List<Product> products;
+        private HashMap<UUID, Product> products;
         private boolean active;
 
         private Builder() {
@@ -41,7 +48,7 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
             return this;
         }
 
-        public Builder products(List<Product> val) {
+        public Builder products(HashMap<UUID, Product> val) {
             products = val;
             return this;
         }
