@@ -85,7 +85,7 @@ public class Order extends AggregateRoot<OrderId> {
 
     private void validateTotalPrice() {
         if (price == null || !price.isPositive()) {
-            throw new OrderDomainException("Total price must be positive ");
+            throw new OrderDomainException("Total price must be positive");
         }
     }
 
@@ -96,15 +96,15 @@ public class Order extends AggregateRoot<OrderId> {
         }).reduce(Money.ZERO, Money::add);
 
         if (!price.equals(orderItemsTotal)) {
-            throw new OrderDomainException("Total price: " + price.getAmount() +
-                    " do not match to order items' total: " + orderItemsTotal.getAmount());
+            throw new OrderDomainException("Total price: " + orderItemsTotal.getAmount() +
+                    " do not match to order items' total: " + price.getAmount());
         }
     }
 
     private void validateItemPrice(OrderItem orderItem) {
         if (!orderItem.isPriceValid())
             throw new OrderDomainException("Order item price: " + orderItem.getPrice().getAmount() +
-                    "is invalid for product: " + orderItem.getProduct().getId().getValue());
+                    " is invalid for product: " + orderItem.getProduct().getId().getValue());
     }
 
     private void initializeOrderItems() {
