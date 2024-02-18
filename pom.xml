@@ -21,6 +21,8 @@
         <module>common</module>
         <module>infrastructure</module>
         <module>infrastructure/kafka</module>
+        <module>customer-service</module>
+        <module>payment-service</module>
     </modules>
 
     <properties>
@@ -62,6 +64,16 @@
             <dependency>
                 <groupId>dev.adidahari.food.ordering.system</groupId>
                 <artifactId>common-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.adidahari.food.ordering.system</groupId>
+                <artifactId>common-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.adidahari.food.ordering.system</groupId>
+                <artifactId>kafka-config-data</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
