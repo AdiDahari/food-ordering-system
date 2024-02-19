@@ -3,7 +3,9 @@ package dev.adidahari.food.ordering.system.order.service.domain.entity;
 import dev.adidahari.food.ordering.system.domain.entity.AggregateRoot;
 import dev.adidahari.food.ordering.system.domain.valueobject.*;
 import dev.adidahari.food.ordering.system.order.service.domain.exception.OrderDomainException;
-import dev.adidahari.food.ordering.system.order.service.domain.valueobject.*;
+import dev.adidahari.food.ordering.system.order.service.domain.valueobject.OrderItemId;
+import dev.adidahari.food.ordering.system.order.service.domain.valueobject.StreetAddress;
+import dev.adidahari.food.ordering.system.order.service.domain.valueobject.TrackingId;
 
 import java.util.List;
 import java.util.UUID;
